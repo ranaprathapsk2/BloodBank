@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Blood Adding</h4>
+                  <p class="card-description">
+                    wise hospital data
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'saveblood' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="form-group">
+
+                      <label>Hospital Name</label>
+                      <select class="form-control" onchange="change(container,value)" name="hname">
+                        <option>Select Hospital</option>
+                        {% for i in hosp %}
+                        <option value="{{i.id}}">{{i.Name}}</option>
+                        {% endfor %}
+
+                      </select>
+
+                    </div>
+                      <input type="hidden" id="container" value="" name="hospid">
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">O-</div>
+                      </div>
+                      <input type="text" class="form-control"  placeholder="Units" name="Oneg"> &nbsp &nbsp
+
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">A-</div>
+                      </div>
+                      <input type="text" class="form-control"  placeholder="Units" name="Aneg"> &nbsp &nbsp
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">B-</div>
+                      </div>
+                      <input type="text" class="form-control"  placeholder="Units" name="Bneg"> &nbsp &nbsp
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">AB-</div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Units" name="ABneg"> &nbsp &nbsp
+
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">O+</div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Units"  name="Opos"> &nbsp &nbsp
+
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">A+</div>
+                      </div>
+                      <input type="text" class="form-control"placeholder="Units" name="Apos"> &nbsp &nbsp
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">B+</div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Units" name="Bpos"> &nbsp &nbsp
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">AB+</div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Units" name="ABpos"> &nbsp &nbsp
+                    </div>
+                    <br> <br>
+                      <input type="hidden" name="action" value="Blood Details Added">
+                      <input type="hidden" name="name" value="{{request.session.username}}">
+                    <button type="submit" class="btn btn-success mr-2">Submit</button></form>
+                    <button class="btn btn-light">Cancel</button>
+
+                </div>
+              </div>
+            </div>
+</body>
+        <script>
+            function change(id,Hospitalid){
+            id.value=Hospitalid;
+            }
+        </script>
+    {% if messages %}
+    {% for i in messages %}
+        {% if i.tag == 'warning' %}
+        <script>
+            swal('{{i}}','','warning')
+        </script>
+        {% elif i.tag == 'error' %}
+        <script>
+            swal('{{i}}','','error')
+        </script>
+        {% else %}
+        <script>
+            swal('{{i}}','','success')
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</html>
+{% endblock %}

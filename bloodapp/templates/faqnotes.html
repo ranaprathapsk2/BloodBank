@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">FAQ Contents</h4>
+                  <p class="card-description">
+                  </p>
+                  <form  method="post" action="{% url 'savefaq' %}">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Title</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Title" name="title">
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Textarea</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="10" placeholder="Text" name="text"></textarea>
+                    </div>
+                      <input type="hidden" name="name" value="{{request.session.username}}">
+                    <input type="hidden" name="action" value="New FAQ Created">
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button></form>
+                    <button class="btn btn-light">Cancel</button>
+
+                </div>
+              </div>
+            </div>
+    {% if messages %}
+    {% for i in messages %}
+        {% if i.tag == 'warning' %}
+        <script>
+            swal('{{i}}','','warning')
+        </script>
+        {% elif i.tag == 'error' %}
+        <script>
+            swal('{{i}}','','error')
+        </script>
+        {% else %}
+        <script>
+            swal('{{i}}','','success')
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

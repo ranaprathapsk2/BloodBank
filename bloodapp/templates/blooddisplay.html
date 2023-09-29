@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="row">{% for d in data %}
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <img src="{{d.Image.url}}" alt="" width="100px">
+                    <p class="card-title" style="margin-left:115px;margin-top:-40px">{{d.Name}}</p>
+                    <p style="margin-top:30px">Last Updated On- {{d.Time}}</p>
+
+
+                  <table class="table table-borderless  report-table">
+                                    <tbody>
+                                    <tr>
+                                      <th class="text-muted">O-</th>
+                                      <th class="text-muted">O+</th>
+                                      <th class="text-muted">A-</th>
+                                      <th class="text-muted">A+</th>
+                                      <th class="text-muted">B-</th>
+                                      <th class="text-muted">B+</th>
+                                      <th class="text-muted">AB-</th>
+                                      <th class="text-muted">AB+</th>
+                                    </tr>
+                                    <tr>
+
+                                      <td><h5 class="font-weight-bold mb-0">{{d.ONeg}}</h5></td>
+                                      <td><h5 class="font-weight-bold mb-0">{{d.OPos}}</h5></td>
+                                      <td><h5 class="font-weight-bold mb-0">{{d.ANeg}}</h5></td>
+                                      <td><h5 class="font-weight-bold mb-0">{{d.APos}}</h5></td>
+                                      <td><h5 class="font-weight-bold mb-0">{{d.BNeg}}</h5></td>
+                                      <td><h5 class="font-weight-bold mb-0">{{d.BPos}}</h5></td>
+                                      <td><h5 class="font-weight-bold mb-0">{{d.ABNeg}}</h5></td>
+                                      <td><h5 class="font-weight-bold mb-0">{{d.ABPos}}</h5></td>
+                                      <td>
+                                        <form action="{% url 'bloodedit' dataid=d.id %}">
+                                          <button type="submit" class="btn btn-info">EDIT</button>
+                                        </form></td>
+                                      <td>
+                                        <form action="{% url 'blooddelete' dataid=d.id %}">
+                                          <button type="submit" class="btn btn-warning">DELETE</button>
+                                        </form></td>
+
+
+                                    </tr>
+                                    </tbody>
+                                  </table>
+
+                </div>
+              </div>
+            </div>
+
+  {% endfor %}
+</div>
+
+
+</body>
+</html>
+{% endblock %}
+

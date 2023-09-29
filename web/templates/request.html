@@ -1,0 +1,381 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Kind Heart Charity - Free Bootstrap 5.2.2 CSS Template</title>
+
+    <!-- CSS FILES -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+    <!--
+
+TemplateMo 581 Kind Heart Charity
+
+https://templatemo.com/tm-581-kind-heart-charity
+
+-->
+
+</head>
+
+<body>
+
+<!--    <header class="site-header">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+
+<!--                <div class="col-lg-8 col-12 d-flex flex-wrap">-->
+<!--                    <p class="d-flex me-4 mb-0">-->
+<!--                        <i class="bi-geo-alt me-2"></i>-->
+<!--                        Welcome {{request.session.email}}-->
+<!--                    </p>-->
+
+<!--                    <p class="d-flex mb-0">-->
+<!--                        <i class="bi-envelope me-2"></i>-->
+
+<!--                        <a href="">-->
+<!--                            Profile-->
+<!--                        </a>-->
+<!--                    </p>-->
+<!--                </div>-->
+
+<!--                <div class="col-lg-3 col-12 ms-auto d-lg-block d-none">-->
+<!--                    <ul class="social-icon">-->
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-twitter"></a>-->
+<!--                        </li>-->
+
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-facebook"></a>-->
+<!--                        </li>-->
+
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-instagram"></a>-->
+<!--                        </li>-->
+
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-youtube"></a>-->
+<!--                        </li>-->
+
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-whatsapp"></a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="{% static 'images/2.png' %}" class="logo img-fluid" alt="Kind Heart Charity">
+                <span>
+                    Blood Bank
+                    <small>Non-profit Organization</small>
+                </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'index' %}">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'about' %}">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'news' %}">Articles</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'faq' %}">FAQ</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'volunteer' %}">Volunteer</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'contact' %}">Feedback</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'donations' %}">Donate</a>
+                    </li>
+
+                    <li class="nav-item dropdown ms-3">
+                        {% if request.session.email %}
+                        <a class="nav-link click-scroll dropdown-toggle custom-btn custom-border-btn btn" href="#section_5"
+                            id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">{{request.session.email}}</a>
+
+
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                            <center>
+
+                            <li><a class="dropdown-item " href="{% url 'profile' %}">PROFILE</a></li>
+                                <a href="{% url 'logout' %}">
+                                    <form method="post" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="Logout">
+                                        <input type="hidden" name="email" value="{{request.session.email}}">
+                                <li><button type="submit" class="dropdown-item">LOG OUT</button></li></center></a>
+                        </form></ul>
+                    </li>
+{% else %}
+
+
+                    <li class="nav-item ms-3">
+
+
+
+                        <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'loginpage' %}">
+                            Log In</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <main>
+        <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12">
+                        <h2 class="text-white mb-4">Volunteer</h2>
+
+                        <form class="custom-form volunteer-form mb-5 mb-lg-0" action="{% url 'saverequest' %}" method="post" role="form">
+                            {% csrf_token %}
+                            <h3 class="mb-4">Blood request</h3>
+                            <input type="hidden" value="{{request.session.email}}" name="email">
+
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <input type="text" name="name" id="blood-name" class="form-control" placeholder="Patient Name"  required="">
+                                </div>
+
+                                <div class="col-lg-6 col-12">
+                                    <input type="text" name="bystander" id="blood-age"  class="form-control" placeholder="Bystander Name" required="">
+                                </div>
+
+                                <div class="col-lg-6 col-12">
+                                    <select name="group" id="bloodgroup" class="form-control" placeholder="Blood Group" required="">
+                                    <option>Select Blood Group</option>
+                                        <option>O-</option>
+                                        <option>O+</option>
+                                        <option>A-</option>
+                                        <option>A+</option>
+                                        <option>B-</option>
+                                        <option>B+</option>
+                                        <option>AB-</option>
+                                        <option>AB+</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-6 col-12">
+                                    <select name="district" id="blood-group" class="form-control"  required="">
+                                       <option>Select Your District</option>
+                                       <option>Kasargod</option>
+                                       <option>Kannur</option>
+                                       <option>Wayanad</option>
+                                       <option>Kozhikode</option>
+                                       <option>Malappuram</option>
+                                       <option>Palakkad</option>
+                                       <option>Thrissur</option>
+                                       <option>Ernakulam</option>
+                                       <option>Alappuzha</option>
+                                       <option>Idukki</option>
+                                       <option>Kollam</option>
+                                       <option>Kottayam</option>
+                                       <option>Pathanamthitta</option>
+                                       <option>Thiruvananthapuram</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-6 col-12">
+                                    <input type="date" name="date" id="blood-data" class="form-control" placeholder="Date" required="" min="2023-08-23">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <input type="number" name="number" id="blood-contact"  class="form-control" placeholder="Contact Number" required="">
+                                </div>
+                            </div>
+                            <div class="row">
+
+
+                                <div class="col-lg-12 col-12">
+                                    <input type="text" name="hospital" id="hospital" class="form-control" placeholder="Hospital Name" required="">
+                                </div>
+
+                                <div class="col-lg-12 col-12">
+                                    <input type="text" name="place" id="blood-place" class="form-control" placeholder="Place" required="">
+                                </div>
+
+
+                            </div>
+
+
+                            <textarea name="reason" rows="3" class="form-control" id="volunteer-message" placeholder="Your Requirements/Reason/Comment "></textarea>
+                            <input type="hidden" name="action" value="Blood Request">
+                            <button type="submit" class="form-control">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-6 col-12">
+                        <img src="/static/donate.jpeg" class="volunteer-image img-fluid" alt="">
+
+                        <div class="custom-block-body text-center">
+                            <h4 class="text-white mt-lg-3 mb-lg-3">About Volunteering</h4>
+
+                            <p class="text-white">Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm
+                                tokito Professional charity theme based</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </main>
+
+   <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-12 mb-4">
+                    <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="">
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Quick Links</h5>
+
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item"><a href="{% url 'index' %}" class="footer-menu-link">Home</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'news' %}" class="footer-menu-link">Articles</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'faq' %}" class="footer-menu-link">FAQ</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'contact' %}" class="footer-menu-link">Contact</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'login' %}" class="footer-menu-link">Login</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'register' %}" class="footer-menu-link">Signup</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'donations' %}" class="footer-menu-link">Donate</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'volunteer' %}" class="footer-menu-link">Become a volunteer</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                    <h5 class="site-footer-title mb-3">Contact Infomation</h5>
+
+                    <p class="text-white d-flex mb-2">
+                        <i class="bi-telephone me-2"></i>
+
+                        <a href="tel: 987654321" class="site-footer-link">
+                            987654321
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <i class="bi-envelope me-2"></i>
+
+                        <a href="mailto:donate@bloodbank.org" class="site-footer-link">
+                            donate@bloodbank.org
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex mt-3">
+                        <i class="bi-geo-alt me-2"></i>
+                        Kakkand,Kochi
+                    </p>
+
+                    <a href="#" class="custom-btn btn mt-3">Get Direction</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-7 col-12">
+                        <p class="copyright-text mb-0">Copyright © 2023 <a href="#">Blood Bank Project</a> By RaNa.
+                            <br>   Created By :
+                            <a href="">RaNa</a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
+                        <ul class="social-icon">
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link bi-twitter"></a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link bi-facebook"></a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link bi-instagram"></a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link bi-linkedin"></a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="https://youtube.com/templatemo" class="social-icon-link bi-youtube"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/click-scroll.js' %}"></script>
+    <script src="{% static 'js/counter.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'sweetalert.min.js' %}"></script>
+    {% if messages %}
+    {% for i in messages %}
+        {% if i.tag == 'warning' %}
+        <script>
+            swal('{{i}}','','warning')
+        </script>
+        {% elif i.tag == 'error' %}
+        <script>
+            swal('{{i}}','','error')
+        </script>
+        {% else %}
+        <script>
+            swal('{{i}}','','success')
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</body>
+
+</html>

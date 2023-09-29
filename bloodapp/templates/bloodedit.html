@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Update Blood data</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'bloodupdate' dataid=data.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Hospital Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" name="hname"  value="{{data.Name}}">
+
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">O-</div>
+                      </div>
+                      <input type="text" class="form-control"  placeholder="Units" name="Oneg" value="{{data.ONeg}}"> &nbsp &nbsp
+
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">A-</div>
+                      </div>
+                      <input type="text" class="form-control"  placeholder="Units" name="Aneg" value="{{data.OPos}}"> &nbsp &nbsp
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">B-</div>
+                      </div>
+                      <input type="text" class="form-control"  placeholder="Units" name="Bneg" value="{{data.ANeg}}"> &nbsp &nbsp
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">AB-</div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Units" name="ABneg" value="{{data.APos}}"> &nbsp &nbsp
+
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">O+</div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Units"  name="Opos" value="{{data.BNeg}}"> &nbsp &nbsp
+
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">A+</div>
+                      </div>
+                      <input type="text" class="form-control"placeholder="Units" name="Apos" value="{{data.BPos}}"> &nbsp &nbsp
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">B+</div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Units" name="Bpos" value="{{data.ABNeg}}"> &nbsp &nbsp
+                     <div class="input-group-prepend">
+                        <div class="input-group-text bg-primary text-white">AB+</div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Units" name="ABpos" value="{{data.ABPos}}"> &nbsp &nbsp
+                    </div>
+                    <br> <br>
+                      <input type="hidden" name="action" value="Blood Details Edited">
+                      <input type="hidden" name="name" value="{{request.session.username}}">
+                    <button type="submit" class="btn btn-success mr-2">Update Data</button>
+                      <form action="{% url 'blooddisplay' %}">
+                    <button type="submit" class="btn btn-light">Cancel</button>
+                    </form>
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
+    {% if messages %}
+    {% for i in messages %}
+        {% if i.tag == 'warning' %}
+        <script>
+            swal('{{i}}','','warning')
+        </script>
+        {% elif i.tag == 'error' %}
+        <script>
+            swal('{{i}}','','error')
+        </script>
+        {% else %}
+        <script>
+            swal('{{i}}','','success')
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

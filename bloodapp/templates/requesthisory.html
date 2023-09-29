@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<select onchange="change(container,value)" >
+    <option>Select</option>
+    {% for i in data %}
+    <option value="{{i.id}}">{{i.Name}}</option>
+    {% endfor %}
+</select>
+<input type="text" id="container" value="" onchange="change(container1,value)">
+
+
+
+<select name="" id="">
+    <option>Select</option>
+    <option></option>
+    <option></option>
+
+</select>
+<script>
+            function change(id,Hospitalid){
+            id.value=Hospitalid;
+            }
+            function change(id,Hospitalid){
+            id.value=Hospitalid;
+            }
+        </script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+
+{% for i in sor %}
+<ul>
+<li>ff{{ i.District }}</li>
+</ul>
+{% endfor %}
+
+<table>
+    <th>hello</th>
+    {% for i in sor %}
+    <tr>
+        <td>{{i.District}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

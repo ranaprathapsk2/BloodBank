@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %} {% endblock %}
+</head>
+<body>
+<form method="post" action="{% url 'savehospital' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">HOSPITAL DETAILS</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleInputName1">Hospital Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" name="hname" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Hospital District</label>
+                        <select class="form-control" id="exampleSelectGender" name="district">
+                          <option>Select District</option>
+                          <option>Kannur</option>
+                          <option>Kozhikode</option>
+                          <option>Eranakulum</option>
+                          <option>Pathanamthitta</option>
+                          <option>Thiruvananthapuram</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Hospital Contact Number</label>
+                      <input type="text" class="form-control" id="exampleInputPassword4" name="number" placeholder="Contact Number">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputCity1">Hospital Email</label>
+                      <input type="email" class="form-control" id="exampleInputCity1" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Hospital Category</label>
+                        <select class="form-control" id="exampleSelectGender" name="category">
+                          <option>Select Category</option>
+                          <option>Government</option>
+                          <option>Private</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label>Hospital Image</label>
+
+                      <div class="input-group col-xs-12">
+                        <input type="file" class="form-control file-upload-info" placeholder="Upload Image" name="image">
+                        <span class="input-group-append">
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Hospital Address</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Hospital Address" name="address"></textarea>
+                    </div>
+                      <input type="hidden" name="action" value="Hospital Added">
+                      <input type="hidden" name="name" value="{{request.session.username}}">
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</form>
+    {% if messages %}
+    {% for i in messages %}
+        {% if i.tag == 'warning' %}
+        <script>
+            swal('{{i}}','','warning')
+        </script>
+        {% elif i.tag == 'error' %}
+        <script>
+            swal('{{i}}','','error')
+        </script>
+        {% else %}
+        <script>
+            swal('{{i}}','','success')
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

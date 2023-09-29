@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Article Adding</h4>
+                  <p class="card-description">
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'savearticle' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="">Title</label>
+                      <input type="text" class="form-control"  placeholder="Title" name="title">
+                    </div>
+                      <div class="form-group">
+                      <label for="">Author</label>
+                      <input type="text" class="form-control"  placeholder="Author" name="author">
+                    </div>
+                      <div class="form-group">
+                      <label for="">Category</label>
+                      <input type="text" class="form-control" placeholder="Category" name="category">
+                    </div>
+                    <div class="form-group">
+                      <label>File upload</label>
+                      <input type="file" name="img" class="file-upload-default">
+                      <div class="input-group col-xs-12">
+                        <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="image">
+
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Paragraph 1</label>
+                      <textarea class="form-control" id="" rows="4" name="p1"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Paragraph 2</label>
+                      <textarea class="form-control" id="" rows="4" name="p2"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Paragraph 3</label>
+                      <textarea class="form-control" id="" rows="4" name="p3"></textarea>
+                    </div>
+                    <input type="hidden" name="name" value="{{request.session.username}}">
+                    <input type="hidden" name="action" value="New Article Created">
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button></form>
+                    <button class="btn btn-light">Cancel</button>
+
+                </div>
+              </div>
+            </div>
+    {% if messages %}
+    {% for i in messages %}
+        {% if i.tag == 'warning' %}
+        <script>
+            swal('{{i}}','','warning')
+        </script>
+        {% elif i.tag == 'error' %}
+        <script>
+            swal('{{i}}','','error')
+        </script>
+        {% else %}
+        <script>
+            swal('{{i}}','','success')
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

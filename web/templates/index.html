@@ -1,0 +1,615 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Index | Blood Bank</title>
+
+    <!-- CSS FILES -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+    <!--
+
+TemplateMo 581 Kind Heart Charity
+
+https://templatemo.com/tm-581-kind-heart-charity
+
+-->
+
+</head>
+
+<body>
+
+<!--    <header class="site-header">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+
+<!--                <div class="col-lg-8 col-12 d-flex flex-wrap">-->
+<!--                    <p class="d-flex me-4 mb-0">-->
+<!--                        <i class="bi-geo-alt me-2"></i>-->
+<!--                        Welcome {{request.session.email}}-->
+<!--                    </p>-->
+
+<!--                    <p class="d-flex mb-0">-->
+<!--                        <i class="bi-envelope me-2"></i>-->
+
+<!--                        <a href="">-->
+<!--                            Profile-->
+<!--                        </a>-->
+<!--                    </p>-->
+<!--                </div>-->
+
+<!--                <div class="col-lg-3 col-12 ms-auto d-lg-block d-none">-->
+<!--                    <ul class="social-icon">-->
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-twitter"></a>-->
+<!--                        </li>-->
+
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-facebook"></a>-->
+<!--                        </li>-->
+
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-instagram"></a>-->
+<!--                        </li>-->
+
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-youtube"></a>-->
+<!--                        </li>-->
+
+<!--                        <li class="social-icon-item">-->
+<!--                            <a href="#" class="social-icon-link bi-whatsapp"></a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+    <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'images/2.png' %}" class="logo img-fluid" alt="Kind Heart Charity">
+                <span>
+                    Blood Bank
+                    <small>Non-profit Organization</small>
+                </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'index' %}">Home</a>
+                    </li>
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link click-scroll" href="{% url 'about' %}">About</a>-->
+<!--                    </li>-->
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'news' %}">Articles</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'faq' %}">FAQ</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'volunteer' %}">Volunteer</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'contact' %}">Feedback</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'community' %}">Community</a>
+                    </li>
+
+                    <li class="nav-item dropdown ms-3">
+                        {% if request.session.email %}
+                        <a class="nav-link click-scroll dropdown-toggle custom-btn custom-border-btn btn" href="#section_5"
+                            id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">{{request.session.email}}</a>
+
+
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                            <center>
+
+                            <li><a class="dropdown-item " href="{% url 'profile' %}">PROFILE</a></li>
+                                <a href="{% url 'logout' %}">
+                                    <form method="post" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="Logout">
+                                        <input type="hidden" name="email" value="{{request.session.email}}">
+                                <li><button type="submit" class="dropdown-item">LOG OUT</button></li></center></a>
+                        </form></ul>
+                    </li>
+{% else %}
+
+
+                    <li class="nav-item ms-3">
+
+
+
+                        <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'loginpage' %}">
+                            Log In</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+<!--        <section class="hero-section hero-section-full-height">-->
+<!--            <div class="container-fluid">-->
+<!--                <div class="row">-->
+
+<!--                    <div class="col-lg-12 col-12 p-0">-->
+<!--                        <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">-->
+<!--                            <div class="carousel-inner">-->
+<!--                                <div class="carousel-item active">-->
+<!--                                    <img src="{% static 'images/slide/b3.png' %}"-->
+<!--                                        class="carousel-image img-fluid" alt="...">-->
+
+<!--                                    <div class="carousel-caption d-flex flex-column justify-content-end">-->
+<!--                                        <h1>be a Kind Heart</h1>-->
+
+<!--                                        <p>Professional charity theme based on Bootstrap 5.2.2</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="carousel-item">-->
+<!--                                    <img src="{% static 'images/slide/b2.jpg' %}"-->
+<!--                                        class="carousel-image img-fluid" alt="...">-->
+
+<!--                                    <div class="carousel-caption d-flex flex-column justify-content-end">-->
+<!--                                        <h1>Non-profit</h1>-->
+
+<!--                                        <p>You can support us to grow more</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="carousel-item">-->
+<!--                                    <img src="{% static 'b6.jpg' %}"-->
+<!--                                        class="carousel-image img-fluid" alt="...">-->
+
+<!--                                    <div class="carousel-caption d-flex flex-column justify-content-end">-->
+<!--                                        <h1>Humanity</h1>-->
+
+<!--                                        <p>Please tell your friends about our website</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <button class="carousel-control-prev" type="button" data-bs-target="#hero-slide"-->
+<!--                                data-bs-slide="prev">-->
+<!--                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                                <span class="visually-hidden">Previous</span>-->
+<!--                            </button>-->
+
+<!--                            <button class="carousel-control-next" type="button" data-bs-target="#hero-slide"-->
+<!--                                data-bs-slide="next">-->
+<!--                                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                                <span class="visually-hidden">Next</span>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+
+
+        <section class="section-padding">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-10 col-12 text-center mx-auto">
+                        <h2 class="mb-5">Welcome to Blood Bank</h2>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="featured-block d-flex justify-content-center align-items-center">
+                            <a href="{% url 'volunteer' %}" class="d-block">
+                                <img src="{% static 'images/icons/1.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                <p class="featured-block-text">Become a <strong>volunteer</strong></p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
+                        <div class="featured-block d-flex justify-content-center align-items-center">
+                            <a href="" class="d-block">
+                                <img src="{% static 'images/icons/3.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                <p class="featured-block-text">Save a<strong> Life</strong></p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
+                        <div class="featured-block d-flex justify-content-center align-items-center">
+                            <a href="{% url 'donations' %}" class="d-block">
+                                <img src="{% static 'images/icons/4.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                <p class="featured-block-text">Donate <strong>Blood</strong></p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="featured-block d-flex justify-content-center align-items-center">
+                            <a href="" class="d-block">
+                                <img src="{% static 'images/icons/5b.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                <p class="featured-block-text"><strong>Become a</strong> Hero</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <section class="cta-section section-padding section-bg">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+
+                    <div class="col-lg-5 col-12 ms-auto">
+                        <h2 class="mb-0">Donate Blood. <br> Save Lives.</h2>
+                    </div>
+
+                    <div class="col-lg-5 col-12">
+                        {% if request.session.email %}
+                        <a href="{% url 'request' %}" class="custom-btn btn smoothscroll">Blood Request</a>
+                        {% else %}
+                        <a href="{% url 'loginpage' %}" class="custom-btn btn smoothscroll">Blood Request</a>
+                        {% endif %}
+                        {% if request.session.email %}
+                        <a href="{% url 'blooddonate' %}" class="custom-btn btn smoothscroll">Blood Donate</a>
+                        {% else %}
+                        <a href="{% url 'loginpage' %}" class="custom-btn btn smoothscroll">Blood Donate</a>
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section-padding" id="section_new_request">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12 text-center mb-4">
+                        <h2>Latest Requests</h2>
+
+                    </div>
+
+                        {% for i in data %}
+
+                            <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0" style="margin-top:500px ; text-align:center;margin: 50px auto; ">
+                        <div class="custom-block-wrap">
+                            <a href="{% url 'requestchat' dataid=i.id %}">
+                            <div class="custom-block" >
+                                <div class="custom-block-body">
+                                    <h5 class="mb-3">{{i.BloodGroup}} Blood Requested At {{i.District}}</h5>
+                                    <h4> </h4>
+                                    <h6>Requested by {{i.Bystander}}, {{i.ContactNumber}}</h6>
+                                    <div class="d-flex align-items-center my-2">
+                                    <p>{{i.BloodUnits}} Units {{i.BloodGroup}} Blood needed at {{i.Place}} on or before {{i.Date}}. Wiiling donors please contact bystander {{i.Bystander}},{{i.ContactNumber }}</p>
+
+
+                                    </div>
+                                </div>
+
+<!--                                <a href="" class="custom-btn btn">Request Opened Now</a>-->
+                            </div></a>
+                        </div>
+                    </div >
+
+                        {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <section class="section-padding" id="section_hospital">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12 text-center mb-4">
+                        <h2>Hospital Status</h2>
+                        <h3>(Only Associated With Us)</h3>
+
+                    </div>
+
+                    {% for i in blood %}
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0" style="margin-top:500px ; text-align:center;margin: 50px auto;">
+                        <div class="custom-block-wrap">
+                            <img src="{{i.Image.url}}"
+                                class="custom-block-image img-fluid" alt="">
+                            <div class="custom-block">
+                                <div class="custom-block-body">
+                                    <h5 class="mb-3">{{i.Name}}</h5>
+
+                                    <p></p>
+
+
+
+
+                                    <div class="d-flex align-items-center my-2">
+                                        <p class="mb-0">
+                                            <strong>O+ :</strong>
+                                            {{i.OPos}}
+                                        </p>
+
+                                        <p class="ms-auto mb-0">
+                                            <strong>A+ :</strong>
+                                            {{i.APos}}
+                                        </p>
+                                        <p class="ms-auto mb-0">
+                                            <strong>B+ :</strong>
+                                            {{i.BPos}}
+                                        </p>
+                                        <p class="ms-auto mb-0">
+                                            <strong>AB+ :</strong>
+                                            {{i.ABPos}}
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-center my-2">
+                                        <p class="mb-0">
+                                            <strong>O- :</strong>
+                                            {{i.ONeg}}
+                                        </p>
+
+                                        <p class="ms-auto mb-0">
+                                            <strong>A- :</strong>
+                                            {{i.ANeg}}
+                                        </p>
+                                        <p class="ms-auto mb-0">
+                                            <strong>B- :</strong>
+                                            {{i.BNeg}}
+                                        </p>
+                                        <p class="ms-auto mb-0">
+                                            <strong>AB- :</strong>
+                                            {{i.ABNeg}}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="custom-btn btn ">Last Updated On : {{i.Time}}</button>
+                            </div>
+                        </div>
+                    </div >
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="testimonial-section section-padding section-bg">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <h2 class="mb-lg-3"></h2>
+
+                        <div id="testimonial-carousel" class="carousel carousel-fade slide" data-bs-ride="carousel">
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="carousel-caption">
+                                        <h4 class="carousel-title">You are not important because of how long you live, you are important because of how effective you live</h4>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="carousel-caption">
+                                        <h4 class="carousel-title">If you donate money, you give food, But if you donate blood, you give life.</h4>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="carousel-caption">
+                                        <h4 class="carousel-title">You don’t have to be a doctor to save a life: Just donate blood.</h4>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="carousel-caption">
+                                        <h4 class="carousel-title">The bond that links your true family is not one of blood, but of respect and joy in each other's life.
+</h4>
+
+
+                                    </div>
+                                </div>
+
+                                <ol class="carousel-indicators">
+                                    <li data-bs-target="#testimonial-carousel" data-bs-slide-to="0" class="active">
+                                        <img src="{% static 'images/quote/4.png' %}"
+                                            class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                    </li>
+
+                                    <li data-bs-target="#testimonial-carousel" data-bs-slide-to="1" class="">
+                                        <img src="{% static 'images/quote/3.png' %}"
+                                            class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                    </li>
+
+                                    <li data-bs-target="#testimonial-carousel" data-bs-slide-to="2" class="">
+                                        <img src="{% static 'images/quote/2.png' %}"
+                                            class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                    </li>
+
+                                    <li data-bs-target="#testimonial-carousel" data-bs-slide-to="3" class="">
+                                        <img src="{% static 'images/quote/1.png' %}"
+                                            class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                    </li>
+                                </ol>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-12 mb-4">
+                    <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="">
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Quick Links</h5>
+
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item"><a href="{% url 'index' %}" class="footer-menu-link">Home</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'news' %}" class="footer-menu-link">Articles</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'faq' %}" class="footer-menu-link">FAQ</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'contact' %}" class="footer-menu-link">Feedback</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'login' %}" class="footer-menu-link">Login</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'register' %}" class="footer-menu-link">Signup</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'community' %}" class="footer-menu-link">Community</a></li>
+                        <li class="footer-menu-item"><a href="{% url 'volunteer' %}" class="footer-menu-link">Become a volunteer</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                    <h5 class="site-footer-title mb-3">Contact Infomation</h5>
+
+                    <p class="text-white d-flex mb-2">
+                        <i class="bi-telephone me-2"></i>
+
+                        <a href="tel: 987654321" class="site-footer-link">
+                            987654321
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <i class="bi-envelope me-2"></i>
+
+                        <a href="mailto:donate@bloodbank.org" class="site-footer-link">
+                            donate@bloodbank.org
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex mt-3">
+                        <i class="bi-geo-alt me-2"></i>
+                        Kakkand,Kochi
+                    </p>
+
+                    <a href="#" class="custom-btn btn mt-3">Get Direction</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-7 col-12">
+                        <p class="copyright-text mb-0">Copyright © 2023 <a href="#">Blood Bank Project</a> By RaNa.
+                            <br>   Created By :
+                            <a href="">RaNa</a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
+                        <ul class="social-icon">
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link bi-twitter"></a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link bi-facebook"></a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link bi-instagram"></a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link bi-linkedin"></a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="https://youtube.com/templatemo" class="social-icon-link bi-youtube"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/click-scroll.js' %}"></script>
+    <script src="{% static 'js/counter.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'sweetalert.min.js' %}"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tag == 'warning' %}
+        <script>
+            swal('{{i}}','','warning')
+        </script>
+        {% elif i.tag == 'error' %}
+        <script>
+            swal('{{i}}','','error')
+        </script>
+        {% else %}
+        <script>
+            swal('{{i}}','','success')
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+
+</html>
